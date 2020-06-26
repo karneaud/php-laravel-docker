@@ -1,7 +1,8 @@
+ARG INVOICENINJA_VERSION=5.4.16
 FROM richarvey/nginx-php-fpm:1.9.1
 
 COPY . .
-RUN curl -o /tmp/ninja.zip -fSL https://download.invoiceninja.com/ninja-v5.4.18.zip \
+RUN curl -o /tmp/ninja.zip -fSL https://download.invoiceninja.com/ninja-v${INVOICENINJA_VERSION}.zip \
     && unzip -d /var/www/html /tmp/ninja.zip \
     && cp -aR /var/www/html/ninja/. /var/www/html/ \
     && rm -rf /var/www/html/ninja \
@@ -18,7 +19,6 @@ ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV RUN_SCRIPTS 1
 ENV REAL_IP_HEADER 1
-
 # Laravel config
 ENV APP_ENV production
 ENV APP_DEBUG false
