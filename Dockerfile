@@ -1,6 +1,15 @@
 FROM richarvey/nginx-php-fpm:1.9.1
 
 COPY . .
+RUN curl -o /tmp/ninja.tar.gz -LJ0 https://github.com/invoiceninja/invoiceninja/tarball/v$INVOICENINJA_VERSION \
+    && bsdtar --strip-components=1 -C /var/www/html -xf /tmp/ninja.tar.gz \
+    && rm /tmp/ninja.tar.gz \
+    && cp -R /var/www/html/storage /var/www/html/docker-backup-storage  \
+    && cp -R /var/www/html/public /var/www/html/docker-backup-public  \
+    && mkdir -p /var/www/html/public/logo /var/www/html/storage \
+    && cp /var/www/html/.env.example /var/www/html/.env \
+    && cp /var/www/html/.env.dusk.example /var/www/html/.env.dusk.local \
+    && rm -rf /var/www/html/docs /var/www/html/tests
 
 # Image config
 ENV SKIP_COMPOSER 1
