@@ -10,7 +10,6 @@ RUN curl -o /tmp/ninja.zip -fSL https://download.invoiceninja.com/ninja-v5.4.18.
     && cp -R /var/www/html/public /var/www/html/docker-backup-public  \
     && mkdir -p /var/www/html/public/logo /var/www/html/storage \
     && cp /var/www/html/.env.example /var/www/html/.env \
-    && cp /var/www/html/.env.dusk.example /var/www/html/.env.dusk.local \
     && rm -rf /var/www/html/docs /var/www/html/tests
 
 # Image config
