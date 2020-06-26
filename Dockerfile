@@ -2,7 +2,7 @@ FROM richarvey/nginx-php-fpm:1.9.1
 
 COPY . .
 RUN curl -o /tmp/ninja.zip -LJ0 https://download.invoiceninja.com/ninja-v5.4.18.zip \
-    && tar --strip-components=1 -C /var/www/html -xvzf /tmp/ninja.zip \
+    && tar --strip-components=1 -C /var/www/html -xvf /tmp/ninja.zip \
     && rm /tmp/ninja.zip \
     && cp -R /var/www/html/storage /var/www/html/docker-backup-storage  \
     && cp -R /var/www/html/public /var/www/html/docker-backup-public  \
