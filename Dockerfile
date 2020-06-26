@@ -1,11 +1,9 @@
 FROM richarvey/nginx-php-fpm:1.9.1
 
-ENV INVOICENINJA_VERSION 5.4.18
-
 COPY . .
-RUN curl -o /tmp/ninja.tar.gz -LJ0 https://github.com/invoiceninja/invoiceninja/tarball/v$INVOICENINJA_VERSION \
-    && tar --strip-components=1 -C /var/www/html -xvzf /tmp/ninja.tar.gz \
-    && rm /tmp/ninja.tar.gz \
+RUN curl -o /tmp/ninja.zip -LJ0 https://download.invoiceninja.com/ninja-v${INVOICENINJA_VERSION}.zip \
+    && tar --strip-components=1 -C /var/www/html -xvzf /tmp/ninja.zip \
+    && rm /tmp/ninja.zip \
     && cp -R /var/www/html/storage /var/www/html/docker-backup-storage  \
     && cp -R /var/www/html/public /var/www/html/docker-backup-public  \
     && mkdir -p /var/www/html/public/logo /var/www/html/storage \
