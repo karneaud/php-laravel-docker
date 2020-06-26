@@ -1,4 +1,8 @@
+ARG INVOICENINJA_VERSION
+
 FROM richarvey/nginx-php-fpm:1.9.1
+
+ENV INVOICENINJA_VERSION=$INVOICENINJA_VERSION
 
 COPY . .
 RUN curl -o /tmp/ninja.tar.gz -LJ0 https://github.com/invoiceninja/invoiceninja/tarball/v$INVOICENINJA_VERSION \
